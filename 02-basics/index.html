@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CDN Demo</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <h2> {{ age * 2 }}</h2>
+        <div>{{ age > 60 ? 'Old' : 'Young' }}</div>
+        <div>{{ name.split(' ')[0] }}</div>
+        <div>params: {{ getFullNameParams(firstName, lastName) }}</div>
+        <div>this: {{ getFullName() }}</div>
+        <div>object: {{ getFullNameObj(firstName, lastName).name }}</div>
+        <div>{{ windowArrowFunction() }}</div>
+        <div>{{ vueInstance() }}</div>
+        <div>
+            <!-- Cannot use string interpolation in html attributes -->
+            <a v-bind:href="blogUrl">Visit my blog</a>
+        </div>
+
+        <div>
+        <button v-on:click="clickedButton">Click Here!</button>
+        </div>
+        <div>
+        <button v-on:click="clickedButtonWithParams('Yay!!!!!', $event)">Click Here for Params!</button>
+        </div>
+        <div v-on:click="clickedButton">
+            <button v-on:click.stop="clickedButton">Click Here to modify the event!</button>
+        </div>
+        <div>
+            <a href="www.google.com" v-on:click.prevent="clickedButton" target="_blank">Google</a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el : '#app',
+        data: {
+            message : 'Hello World!',
+            age: 27,
+            name: 'Tom Bartolucci',
+            firstName: 'Tom',
+            lastName: 'Bartolucci',
+            blogUrl: 'http://tombartolucci.io'
+        },
+        methods: {
+            clickedButton: function(event) {
+                console.log(event);
+                alert("You clicked the button!");
+            },
+            clickedButtonWithParams: function(message, event){
+                console.log(event);
+                alert(message);
+            },
+            getFullName: function(){
+                return this.firstName + ' ' + this.lastName;
+            },
+            getFullNameParams: function(first, last){
+                return first + ' ' + last;
+            },
+            getFullNameObj: function(first, last){
+                return {
+                    name: first + ' ' + last
+                };
+            },
+            windowArrowFunction: () => {
+                console.log(this);
+            },
+            vueInstance: function(){
+                console.log(this);
+            }
+        }
+    });
+</script>
+</html>

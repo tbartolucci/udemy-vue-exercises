@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CDN Demo</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Exercise 1: Store the title of a movie and when it was
+         leased in data properties and output them using string interpolation -->
+        <p>Title: {{ movieTitle }} </p>
+        <p>Released: {{ releaseYear }}</p>
+        <!-- Exercise 2: Output whether or not the movie is old or new by using a method
+          the movie is old if it was released prior to year 2000. -->
+        <p>The movie is {{ isMovieNew() ? 'new' : 'old' }}.</p>
+        <!-- Exercise 3: bind the title of the movie to the "title" attribute on
+          the following div element -->
+        <div v-bind:title="movieTitle">Hover your mouse here!</div>
+    </div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el : '#app',
+        data : {
+            movieTitle: 'Fast 5',
+            releaseYear: 2008
+        },
+        methods : {
+            isMovieNew: function() {
+                return this.releaseYear > 2000;
+            }
+        }
+    });
+</script>
+</html>
