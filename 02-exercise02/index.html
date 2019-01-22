@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CDN Demo</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- EXERCISE 1: Make the text input update a data property on
+         every key up event.  Output the data property
+         -->
+        <input type="text" v-on:keyup="textKeyUp"/>
+        <br/>
+        Output: {{ keyUpText }}
+        <br/><br/>
+        <!-- EXERCISE 2:  Make the below text input update the data property
+        from exercise 1, but only when pressing the Control + Enter keys.
+        -->
+        <input type="text" v-on:keyup.enter.ctrl="ctrlEnter"/>
+        <br/>
+        <!-- EXERCISE 3: preven the submit default
+         equivalent of event.preventDefault()
+         -->
+        <form action="" method="GET" v-on:submit.prevent>
+            <input type="submit" value="Submit"/>
+        </form>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el : '#app',
+        data : {
+            keyUpText: ''
+        },
+        methods : {
+            textKeyUp: function(e){
+                this.keyUpText = e.target.value;
+            },
+            ctrlEnter: function(e){
+                this.keyUpText = e.target.value;
+            }
+        }
+    });
+</script>
+</html>

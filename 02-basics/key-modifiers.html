@@ -8,6 +8,12 @@
 <body>
     <div id="app">
         <input type="text" v-on:keyup.enter="pressedEnter" />
+        <br/>
+        <input type="text" v-on:keyup.shift.enter="shiftEnter" />
+        <br/>
+        <button v-on:click="clickButton" />
+        <br/>
+        <button v-on:click.shift="shiftClickButton" />
     </div>
 </body>
 <script type="text/javascript">
@@ -16,6 +22,15 @@
         methods: {
             pressedEnter: function(){
                 alert('You pressed enter!');
+            },
+            shiftEnter: function(){
+                alert("Shift Enter");
+            },
+            clickButton(){
+                alert("Clicked Button");
+            },
+            shiftClickButton(){
+                alert("Clicked Shift Button");
             }
         }
     });
