@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue CDN Demo</title>
+    <script src="vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- Two way binding -->
+    <input type="text" v-model="itemsInStock"/>
+    <!-- basic conditional
+        v-if actual removes elements from the DOM
+    -->
+    <p v-if="itemsInStock > 10">{{itemsInStock}} items in stock.</p>
+    <p v-else-if="itemsInStock > 0">Hurry Up! Only {{itemsInStock}} items in stock.</p>
+    <p v-else>Too bad we're out!</p>
+
+    <template v-if="itemsInStock > 50">
+        <p>Overstocked!! Get 20% off now!</p>
+    </template>
+
+    <!-- hide and show
+        hiding and showing but keeps elements in the DOM
+    -->
+    <p v-show="isNinja">Invisible like a ninja</p>
+    <p v-show="!isNinja">I'm here</p>
+    <button v-on:click="isNinja = !isNinja">Toggle Ninja Skills</button>
+
+    <!-- v-cloak: Hiding String Interpolation -->
+    <h2>V-Cloak Example</h2>
+    <p v-cloak>{{ cloakMessage }}</p>
+
+    <!-- Looping through arrays -->
+    <div>
+        <h1>Movies</h1>
+       <ul>
+           <li v-for="title in movieTitles">{{ title }}</li>
+       </ul>
+        <h1>Employees</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Index</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(e, index) in employees">
+                    <td v-for="(value,key, eIndex) in e">{{ key }}:{{ value }}[{{ eIndex}}]</td>
+                    <td>{{ index }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Databinding lists -->
+    <div>
+        <h1>Names</h1>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Index</th>
+                <th>Text</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="p in people">
+                <td>{{ p.name }}</td>
+                <td>{{ p.id }}</td>
+                <td><input type="text"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button v-on:click="addPerson">Add new person</button>
+        <button v-on:click="shufflePersons">Shuffle People</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="basics.js">
+</script>
+</html>

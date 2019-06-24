@@ -10851,7 +10851,7 @@
             "Failed to generate render function:\n\n" +
             fnGenErrors.map(function (ref) {
               var err = ref.err;
-              var code = ref.code;
+              var code = ref.security;
 
               return ((err.toString()) + " in\n\n" + code + "\n");
           }).join('\n'),

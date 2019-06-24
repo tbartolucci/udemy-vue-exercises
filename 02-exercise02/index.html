@@ -25,21 +25,17 @@
         <form action="" method="GET" v-on:submit.prevent>
             <input type="submit" value="Submit"/>
         </form>
+        <!-- EXERCISE 4: Two way data binding -->
+        <label>Name:</label>
+        <input type="text" v-model.trim.lazy="name" />
+        <p>You entered: {{ name }}</p>
+
+        <label>Age:</label>
+        <input type="text" v-model.number="age" />
+        <p>You entered: {{ age }}</p>
+        <p>Type: {{ typeof age }}</p>
+    </div>
 </body>
-<script type="text/javascript">
-    new Vue({
-        el : '#app',
-        data : {
-            keyUpText: ''
-        },
-        methods : {
-            textKeyUp: function(e){
-                this.keyUpText = e.target.value;
-            },
-            ctrlEnter: function(e){
-                this.keyUpText = e.target.value;
-            }
-        }
-    });
+<script type="text/javascript" src="code.js">
 </script>
 </html>
